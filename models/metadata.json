@@ -1,0 +1,72 @@
+{
+  "model_name": "estateiq_model_v1",
+  "algorithm": "LightGBM Regressor (Optuna-tuned)",
+  "target_transform": "np.log1p",
+  "trained_at": "2026-08-24T09:20:41.729105+00:00",
+  "n_train": 17136,
+  "n_test": 4284,
+  "best_params": {
+    "n_estimators": 400,
+    "num_leaves": 80,
+    "learning_rate": 0.04109584719190008,
+    "feature_fraction": 0.7904331032527049,
+    "bagging_fraction": 0.9449832064366718,
+    "bagging_freq": 1,
+    "min_child_samples": 16,
+    "reg_alpha": 0.012806662871335492,
+    "reg_lambda": 4.705306074632893
+  },
+  "baseline_metrics": {
+    "Ridge": {
+      "mae": 72384.44182315371,
+      "rmse": 124190.76186007631,
+      "mape": 13.454986726221188,
+      "r2": 0.8632011966528916
+    },
+    "RandomForest": {
+      "mae": 67375.92253450073,
+      "rmse": 118333.44268193221,
+      "mape": 12.418213905316513,
+      "r2": 0.8758008238408403
+    },
+    "XGBoost": {
+      "mae": 64046.23126021239,
+      "rmse": 110087.55395943219,
+      "mape": 12.029782883887355,
+      "r2": 0.8925070058116686
+    },
+    "LightGBM (default)": {
+      "mae": 63837.50806708747,
+      "rmse": 109590.93103292515,
+      "mape": 11.938478121536535,
+      "r2": 0.8934746551531026
+    }
+  },
+  "test_metrics": {
+    "mae": 61292.602517130064,
+    "rmse": 105290.52170028753,
+    "mape": 11.597385285978525,
+    "r2": 0.9016708531822658
+  },
+  "feature_columns": [
+    "bedrooms",
+    "bathrooms",
+    "sqft_living",
+    "sqft_lot",
+    "floors",
+    "waterfront",
+    "view",
+    "condition",
+    "grade",
+    "sqft_above",
+    "sqft_basement",
+    "yr_built",
+    "yr_renovated",
+    "zipcode",
+    "lat",
+    "long",
+    "sqft_living15",
+    "sqft_lot15",
+    "sale_year"
+  ]
+}

@@ -363,35 +363,63 @@ def main():
         map_df = sample_df.copy()
         map_df["PriceTier"] = pd.qcut(map_df["price"], q=4, labels=["Budget", "Mid-Range", "Upscale", "Luxury"])
 
-        fig_map = px.scatter_mapbox(
-            map_df,
-            lat="lat",
-            lon="long",
-            color="PriceTier",
-            size="sqft_living",
-            hover_name="zipcode",
-            hover_data={"price": ":$,.0f", "sqft_living": True, "lat": False, "long": False},
-            color_discrete_sequence=["#60a5fa", "#34d399", "#fbbf24", "#f87171"],
-            zoom=9.5,
-            center={"lat": lat, "lon": long},
-            mapbox_style="carto-positron",
-            height=500,
-        )
-
-        # Add target property star marker
-        fig_map.add_trace(
-            go.Scattermapbox(
-                lat=[lat],
-                lon=[long],
-                mode="markers+text",
-                marker=go.scattermapbox.Marker(size=18, color="#dc2626", symbol="circle"),
-                text=["Subject Property"],
-                textposition="top right",
-                name="Subject Property",
-            )
-        )
-        fig_map.update_layout(margin=dict(l=0, r=0, t=10, b=0), legend=dict(yanchor="top", y=0.98, xanchor="left", x=0.02))
-        st.plotly_chart(fig_map, use_container_width=True)
+        try:
+            if hasattr(px, "scatter_map") and hasattr(go, "Scattermap"):
+                fig_map = px.scatter_map(
+                    map_df,
+                    lat="lat",
+                    lon="long",
+                    color="PriceTier",
+                    size="sqft_living",
+                    hover_name="zipcode",
+                    hover_data={"price": ":$,.0f", "sqft_living": True, "lat": False, "long": False},
+                    color_discrete_sequence=["#60a5fa", "#34d399", "#fbbf24", "#f87171"],
+                    zoom=9.5,
+                    center={"lat": lat, "lon": long},
+                    height=500,
+                )
+                fig_map.add_trace(
+                    go.Scattermap(
+                        lat=[lat],
+                        lon=[long],
+                        mode="markers+text",
+                        marker=go.scattermap.Marker(size=18, color="#dc2626"),
+                        text=["Subject Property"],
+                        textposition="top right",
+                        name="Subject Property",
+                    )
+                )
+            else:
+                fig_map = px.scatter_mapbox(
+                    map_df,
+                    lat="lat",
+                    lon="long",
+                    color="PriceTier",
+                    size="sqft_living",
+                    hover_name="zipcode",
+                    hover_data={"price": ":$,.0f", "sqft_living": True, "lat": False, "long": False},
+                    color_discrete_sequence=["#60a5fa", "#34d399", "#fbbf24", "#f87171"],
+                    zoom=9.5,
+                    center={"lat": lat, "lon": long},
+                    mapbox_style="open-street-map",
+                    height=500,
+                )
+                fig_map.add_trace(
+                    go.Scattermapbox(
+                        lat=[lat],
+                        lon=[long],
+                        mode="markers+text",
+                        marker=go.scattermapbox.Marker(size=18, color="#dc2626"),
+                        text=["Subject Property"],
+                        textposition="top right",
+                        name="Subject Property",
+                    )
+                )
+            fig_map.update_layout(margin=dict(l=0, r=0, t=10, b=0), legend=dict(yanchor="top", y=0.98, xanchor="left", x=0.02))
+            st.plotly_chart(fig_map, use_container_width=True)
+        except Exception:
+            # Fallback to Streamlit native map
+            st.map(map_df[["lat", "long"]], zoom=9)
 
     # ----------------------------------------------------
     # TAB 3: AI Explainability (SHAP)

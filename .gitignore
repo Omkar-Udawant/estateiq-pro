@@ -21,3 +21,5 @@ artifacts/*
 .pytest_cache/
 .coverage
 htmlcov/
+~$*.docx
+~$*.doc

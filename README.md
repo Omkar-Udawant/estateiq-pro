@@ -2,11 +2,15 @@
 
 > Enterprise-grade Machine Learning Valuation & Explainability System for King County, WA
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-estateiq--pro.streamlit.app-FF4B4B?style=for-the-badge&logo=streamlit)](https://estateiq-pro.streamlit.app)
+
 [![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B.svg)](https://streamlit.io/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B.svg)](https://estateiq-pro.streamlit.app)
 [![LightGBM](https://img.shields.io/badge/LightGBM-Optuna%20Tuned-brightgreen.svg)](https://lightgbm.readthedocs.io/)
 [![Tests](https://img.shields.io/badge/Tests-100%25%20Passing-success.svg)](https://pytest.org/)
+
+🔗 **Live Interactive Web App:** [https://estateiq-pro.streamlit.app](https://estateiq-pro.streamlit.app)
 
 ---
 
